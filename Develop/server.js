@@ -6,7 +6,11 @@ const fs = require('fs');
 let PORT = process.env.PORT || 8080
 
 
-app.use();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use(express.static(path.join(__dirname, "public")))
+
 
 // just going to a webpage is a get request
 // app.get('/', (req, res) => {
