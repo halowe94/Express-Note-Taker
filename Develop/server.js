@@ -3,12 +3,14 @@ const path = require('path');
 const app = express();
 const fs = require('fs');
 
+//we want to look for the environment variables and we want to look for one called port
 let PORT = process.env.PORT || 8080
 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//set static folder
 app.use(express.static(path.join(__dirname, "public")))
 
 
@@ -25,18 +27,18 @@ app.get('/notes', (req, res) => {
 });
 
 //Get SINGLE member
-app.get(, (req, res) => {
-    res.json(members.filter(member => member.id === parseInt(req.params.id)));
-});
-
-app.delete( , (req, res) => {
+app.get("/api/notes/:notes", (req, res) => {
     res.json()
 });
 
-//set a static folder
-app.use(express.static(path.join(__dirname, 'public')))
+app.post("/api/notes", (req, res) => {
+    let newNote = req.body;
+    notes.push(newNote);
+    res.json(newNote);
+});
 
-//we want to look for the environment variables and we want to look for one called port
-const PORT = process.env.PORT || 5000; // PORT OR 5000
+app.delete("/api/notes/:notes", (req, res) => {
+    res.json()
+});
 
-app.listen(PORT, () => console.log(`server started on ${PORT} 5000`));
+app.listen(PORT, () => {console.log("server started on PORT " + PORT)});
