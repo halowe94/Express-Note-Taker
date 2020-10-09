@@ -34,6 +34,11 @@ const dbVar = path.join(__dirname, '../', 'db');
         };
     });
 
+    router.post('/api/notes', (req, res) => {
+        let newNote = req.body;
+        let addNote = fs.writeFileSync(path.join(newNote, "db.json"), "ut8");
+    });
+
     //read all notes and delete via id
     router.delete('api/notes', (req, res) => {
         
