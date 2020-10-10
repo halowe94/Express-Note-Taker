@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const router = require('express').Router();
 
-
+let notes;
 //checkObject = dbVar
 const dbVar = path.join(__dirname, '../', 'db');
 
@@ -10,34 +10,31 @@ const dbVar = path.join(__dirname, '../', 'db');
 
     //GET request reads db.json
     router.get('/api/notes', (req, res) => {
-        let json;
         let data = fs.readFileSync(path.join(dbVar, "db.json"), "utf8");
-        json = JSON.parse(data);
-        res.json(json);
+        notes = (data) ? JSON.parse(data) : [];
+        res.json(notes);
     });
 
     //POST request recieves new note to save on the request body
     //add post to db
     router.post('/api/notes', (req, res) => {
         let data = req.body;
-        let noteData = fs.readFileSync(path.join(dbVar, "db.json"), "utf8");
-        let dbData = JSON.parse(noteData);
-        console.log(data);
+        // let noteData = fs.readFileSync(path.join(dbVar, "db.json"), "utf8");
+        // let dbData = JSON.parse(noteData);
+        // console.log(data);
 
         //for loop to increment id
-        for (i = 0; i < dbData.length, i++;) {
-            let id = parseInt(dbData[i] + 1);
-        };
+        // for (i = 0; i < dbData.length, i++;) {
+        //     let id = parseInt(dbData[i] + 1);
+        // };
 
-        if (Array.isArray(data)) {
-            console.log('Your array is working');
-        };
+        // if (Array.isArray(data)) {
+        //     console.log('Your array is working');
+        // };
+        notes.push(data);
+        fs.writeFileSync(path.join(dbVar, "db.json"), JSON.stringify(notes));
     });
 
-    router.post('/api/notes', (req, res) => {
-        let newNote = req.body;
-        let addNote = fs.writeFileSync(path.join(newNote, "db.json"), "ut8");
-    });
 
     //read all notes and delete via id
     router.delete('api/notes', (req, res) => {
