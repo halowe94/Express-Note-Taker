@@ -1,19 +1,16 @@
 {
-  "name": "expressapp",
+  "name": "note-taker",
   "version": "1.0.0",
-  "description": "## Description",
-  "main": "index.js",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/halowe94/ExpressApp.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "server.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/halowe94/ExpressApp/issues"
-  },
-  "homepage": "https://github.com/halowe94/ExpressApp#readme"
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.3.1"
+  }
 }
